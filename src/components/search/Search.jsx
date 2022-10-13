@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export default function Search() {
-    const [searchTerm, setSearchTerm] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
     const searchInput = useRef(null);
 
     useEffect(() => {
