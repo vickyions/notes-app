@@ -1,10 +1,15 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
-
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export default function Search() {
     const [searchTerm, setSearchTerm] = React.useState(null);
+
+    function onChangeHandler(e) {
+        setSearchTerm(e.target.value);
+        /*call a filter function to the note container*/
+        /*use useReducer of note and for action note return check for existing searchTerm*/
+    }
 
     return (
         <div className="search light">
@@ -17,11 +22,7 @@ export default function Search() {
                 placeholder="Quick Search"
                 value={searchTerm}
                 name="searchTerm"
-                onChange={() => {
-                    /*setsearchTErm*/
-                    /*call a filter function to the note container*/
-                    /*use useReducer of note and for action note return check for existing searchTerm*/
-                }}
+                onChange={onChangeHandler}
             />
         </div>
     );
