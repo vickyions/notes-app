@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export default function Search() {
-    const [searchTerm, setSearchTerm] = React.useState(null);
+    const [searchTerm, setSearchTerm] = useState(null);
+    const searchInput = useRef(null);
+
+    useEffect(() => {
+        searchInput.current.focus();
+    }, []);
 
     function onChangeHandler(e) {
         setSearchTerm(e.target.value);
@@ -22,6 +27,7 @@ export default function Search() {
                 placeholder="Quick Search"
                 value={searchTerm}
                 name="searchTerm"
+                ref={searchInput}
                 onChange={onChangeHandler}
             />
         </div>
