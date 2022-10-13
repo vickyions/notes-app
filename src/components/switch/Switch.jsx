@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 //handle toggle with css
 //import './Switch.css';
 
-export default function Switch({props}) {
+export default function Switch(props) {
     //takes a function and toggles between them should also recieve a togglefunction which will be called to perform a specific action
     const {options, toggleFunction} = props;
     const [optOne, optTwo] = options;
