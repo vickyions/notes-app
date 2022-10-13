@@ -1,6 +1,6 @@
 import React from 'react';
 import Search from '../search/Search';
-//import Layouts from '../layout/Layouts';
+import Layouts from '../layouts/Layouts';
 //import SwitchTheme from '../switch/SwitchTheme';
 
 export default function Navbar() {
@@ -9,8 +9,8 @@ export default function Navbar() {
         <nav className="nav light">
             <h1>Notes</h1>
             <Search />
-            {/*<Layouts />
-            <SwitchTheme />*/}
+            <Layouts />
+            {/*<SwitchTheme />*/}
         </nav>
     );
 }
