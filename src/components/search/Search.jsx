@@ -1,11 +1,16 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Search() {
     const [searchTerm, setSearchTerm] = React.useState(null);
 
     return (
         <div className="search light">
-            <label for="quick-search-bar"><i></i></label>
+            <label htmlFor="quick-search-bar">
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </label>
             <input
                 id="quick-search-bar"
                 type="text"
