@@ -1,4 +1,15 @@
 .switch-container {
+    /*defining variables can be passed why inline style for switch*/
+    --colorOn: green;
+    --colorOff: white;
+    --colorCircleOn: white;
+    --colorCircleOff: green;
+    --textActiveColor: black;
+    --textActiveWt: 600;
+    --textDefaultColor: #777;
+}
+
+.switch-container {
     --size: 1em;
     border: 1px solid red;
     display: flex;
@@ -26,12 +37,12 @@
 
 .switch-on {
     justify-content: end;
-    background-color: green;
+    background-color: var(--colorOn);
 }
 
 .switch-off {
     justify-content: start;
-    background-color: white;
+    background-color: var(--colorOff);
 }
 
 .switch-circle {
@@ -40,9 +51,18 @@
     width: calc(var(--width) * 0.5 - 2 * var(--margin));
     height: calc(var(--height) - 2 * var(--margin));
     margin: var(--margin);
-    background-color: green;
+    background-color: var(--colorCircleOff);
 }
 
 .switch-on .switch-circle {
-    background-color: white;
+    background-color: var(--colorCircleOn);
+}
+
+.switch-left, .switch-right {
+    color: var(--textDefaultColor);
+}
+
+.active {
+    color: var(--textActiveColor);
+    font-weight: var(--textActiveWt);
 }
