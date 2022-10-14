@@ -1,0 +1,42 @@
+.switch-container {
+    --size: 1em;
+    border: 1px solid red;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--size) * 0.3);
+    flex: 0 0 0; /*if inside a flex body*/
+}
+
+.switch-left, .switch-right {
+    font-size: calc(var(--size) * 0.8);
+}
+
+.switch {
+    --width: calc(var(--size) * 2);
+    --height: calc(var(--width) * 0.5);
+    width: var(--width);
+    height: var(--height);
+    border-radius: 1em;
+    border: 1px solid green;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.switch-on {
+    justify-content: end;
+}
+
+.switch-off {
+    justify-content: start;
+}
+
+.switch-circle {
+    --margin: 1px;
+    border-radius: 50%;
+    width: calc(var(--width) * 0.5 - 2 * var(--margin));
+    height: calc(var(--height) - 2 * var(--margin));
+    margin: var(--margin);
+    background-color: green;
+}
