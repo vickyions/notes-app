@@ -13,6 +13,7 @@
 
 .switch-container {
     border: 1px solid red;
+    width: fit-content;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
