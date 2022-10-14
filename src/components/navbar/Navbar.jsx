@@ -1,4 +1,5 @@
 import React from 'react';
+import './Navbar.css';
 import Search from '../search/Search';
 import Layouts from '../layouts/Layouts';
 import Switch from '../switch/Switch';

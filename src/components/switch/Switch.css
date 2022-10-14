@@ -1,5 +1,7 @@
 .switch-container {
     /*defining variables can be passed why inline style for switch*/
+    --size: 1em;
+
     --colorOn: green;
     --colorOff: white;
     --colorCircleOn: white;
@@ -10,7 +12,6 @@
 }
 
 .switch-container {
-    --size: 1em;
     border: 1px solid red;
     display: flex;
     flex-flow: row nowrap;
