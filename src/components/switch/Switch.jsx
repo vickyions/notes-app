@@ -16,11 +16,11 @@ export default function Switch(props) {
 
     return (
         <div className="switch-container" onClick={() => {onClickHandler}}>
-            <div className="switch-left" >{optOne}</div>
+            <div className={`switch-left ${!isOn && "active"}`} >{optOne}</div>
             <div className={`switch switch-${isOn ? "on" : "off"}`}>
                 <div className="switch-circle"></div>
             </div>
-            <div className="switch-right">{optTwo}</div>
+            <div className={`switch-right ${isOn && "active"}`}>{optTwo}</div>
         </div>
     ); 
 }
