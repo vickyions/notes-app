@@ -15,7 +15,7 @@ export default function Navbar() {
             <h1>Notes</h1>
             <Search />
             <Layouts />
-            <Switch options={["Light", "Dark"]} toggleFunction={switchTheme}/>
+            <Switch options={["Light", "Dark"]} />
         </nav>
     );
 }
