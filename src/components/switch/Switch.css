@@ -26,10 +26,12 @@
 
 .switch-on {
     justify-content: end;
+    background-color: green;
 }
 
 .switch-off {
     justify-content: start;
+    background-color: white;
 }
 
 .switch-circle {
@@ -39,4 +41,8 @@
     height: calc(var(--height) - 2 * var(--margin));
     margin: var(--margin);
     background-color: green;
+}
+
+.switch-on .switch-circle {
+    background-color: white;
 }
