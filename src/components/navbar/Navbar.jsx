@@ -7,9 +7,6 @@ import Switch from '../switch/Switch';
 
 export default function Navbar() {
     
-    //temperary change with global switchTheme function
-    function switchTheme(isOn) {console.log(isOn)};
-
     return (
         <nav className="nav light">
             <h1>Notes</h1>
