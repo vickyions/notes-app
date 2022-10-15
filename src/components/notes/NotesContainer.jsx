@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer } from "react";
+import Notes from "Notes";
 
 const NOTES_STR_KEY = "notes.app";
 /*notes [notesObj]
@@ -62,10 +63,25 @@ export default function NotesContainer() {
         localStorage.setItem(NOTES_STR_KEY, JSON.stringify(notes));
     }, [notes]);
 
+    //will have routes for archive and trash
+
     return (
-        <div className="notes-container">
-            <NewNote />
-            {notes.map(() => {})}
-        </div>
+        <>
+        <Notes notes={notes} dispatch={dispatch} filter={defaultNotes}/> 
+        {/*will include routes with Notes having different filtering functions from utils js*/}
+        </>
     );
+}
+
+//functions of utils.js
+function defaultNotes(notes) {
+    return notes.filter((note) => {note.isArchived && note.isDeleted}).sort((a,b) => {
+        if (a.isPinned && b.isPinned){
+            return 0; //dont sort
+        } else if (a.isPinned) {
+            return -1; //sort before b
+        } else if (b.isPinned) {
+            return 1; //sort after b
+        }
+    });
 }
