@@ -11,9 +11,15 @@ const NOTES_STR_KEY = "notes.app";
     tags: [],
 } */
 
-const action = {};
+const ACTION = {
+    ADD_NOTE: 'addNote',
+    DELETE_NOTE: 'deleteNote',
+    GET_NOTES: 'getNotes', //will call a function which takes a query for filtering
+};
 
-function reducer(state, action) {}
+function reducer(prevState, action) {
+    switch 
+}
 
 export default function Notes() {
     //create a reducer which will always return a filtered notes
