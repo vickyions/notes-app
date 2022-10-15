@@ -12,13 +12,27 @@ const NOTES_STR_KEY = "notes.app";
 } */
 
 const ACTION = {
-    ADD_NOTE: 'addNote',
-    DELETE_NOTE: 'deleteNote',
-    GET_NOTES: 'getNotes', //will call a function which takes a query for filtering
+    ADD_NOTE: "addNote",
+    DELETE_NOTE: "deleteNote",
+    GET_NOTES: "getNotes", //will call a function which takes a query for filtering
 };
 
 function reducer(prevState, action) {
-    switch 
+    /*action {
+        type: ACTION.<keyword>,
+        query: /*for returning a filtered notes array *//*
+    }*/
+    switch (action.type) {
+        case ACTION.ADD_NOTE:
+            break;
+        case ACTION.DELETE_NOTE:
+            break;
+        case ACTION.GET_NOTES:
+            //will be a filter function which takes a query also from action.query
+            break;
+        default:
+            return prevState;
+    }
 }
 
 export default function Notes() {
