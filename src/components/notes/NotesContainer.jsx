@@ -25,6 +25,7 @@ const ACTION = {
 function reducer(prevState, action) {
     /*action {
         type: ACTION.<keyword>,
+        tag: <tag Name>,
     }*/
     switch (action.type) {
         case ACTION.ADD_NOTE:
