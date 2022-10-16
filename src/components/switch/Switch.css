@@ -31,7 +31,7 @@
     --height: calc(var(--width) * 0.5);
     width: var(--width);
     height: var(--height);
-    border-radius: 1em;
+    border-radius: calc(var(--height) / 2);
     border: 1px solid green;
     display: flex;
     flex-flow: row nowrap;

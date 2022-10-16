@@ -6,11 +6,11 @@ const NOTES_STR_KEY = "notes.app";
 /*notesObj {
     content,
     backgroundColor,
-    Color,
+    color,
     isPinned,
     isArchived,
     isDeleted,
-    tags: [],
+    tags: [<tag Name>],
 } */
 
 const ACTION = {
