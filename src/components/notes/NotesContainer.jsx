@@ -10,7 +10,7 @@ const NOTES_STR_KEY = "notes.app";
     isPinned,
     isArchived,
     isDeleted,
-    tags: [<tag Name>],
+    ftags: [<tag Name>],
 } */
 
 const ACTION = {
@@ -67,15 +67,17 @@ export default function NotesContainer() {
 
     return (
         <>
-        <Notes notes={notes} dispatch={dispatch} filter={defaultNotes}/> 
+            <Notes notes={notes} dispatch={dispatch} filter={defaultNotes}/> 
         {/*will include routes with Notes having different filtering functions from utils js*/}
+            {/*app utils will have the functions will import in Notes and run it on the notes here I am passing as a filter function for testing*/}
         </>
     );
 }
 
 //functions of utils.js
 function defaultNotes(notes) {
-    return notes.filter((note) => {note.isArchived && note.isDeleted}).sort((a,b) => {
+    //will be ran inside Notes component to filter the notes prop before rendering
+    return notes.filter((note) => {!note.isArchived && !note.isDeleted}).sort((a,b) => {
         if (a.isPinned && b.isPinned){
             return 0; //dont sort
         } else if (a.isPinned) {
