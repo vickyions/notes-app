@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import Notes from "Notes";
+import Notes from "./Notes";
 
 const NOTES_STR_KEY = "notes.app";
 /*notes [notesObj]
@@ -54,9 +54,8 @@ function reducer(prevState, action) {
 export default function NotesContainer() {
     const [notes, dispatch] = useReducer(
         reducer,
-        (() => {
-            JSON.parse(localStorage.getItem(NOTES_STR_KEY));
-        }) || []
+        (JSON.parse(localStorage.getItem(NOTES_STR_KEY))
+         || [])
     );
 
     useEffect(() => {

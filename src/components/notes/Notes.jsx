@@ -1,5 +1,5 @@
 import React from 'react';
-import NoteCard from 'NoteCard';
+import NoteCard from './NoteCard';
 
 /*notes [notesObj]
 /*notesObj {
@@ -16,9 +16,6 @@ export default function Notes(props) {
     const {notes, dispatch, filter} = props;
     //pass filtered note to notecard
     const defNotes = filter(notes);
-    defNotes = [
-        {content:"1232"}, {content:214}, {content:"31jskad"}
-    ];
 
     return (
         <>
