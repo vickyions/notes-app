@@ -57,7 +57,7 @@ function reducer(prevNotes, action) {
                 return note.id !== action.id ? note : {...note, isPinned: !note.isPinned};
             });
         default:
-            return prevState;
+            return prevNotes;
     }
 }
 
