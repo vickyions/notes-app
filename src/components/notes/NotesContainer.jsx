@@ -4,13 +4,14 @@ import Notes from "./Notes";
 const NOTES_STR_KEY = "notes.app";
 /*notes [notesObj]
 /*notesObj {
+ * id: nanoid,
     content,
     backgroundColor,
     color,
     isPinned,
     isArchived,
-    isDeleted,
-    ftags: [<tag Name>],
+    isTrashed,
+    tags: [<tag Name>],
 } */
 
 const ACTION = {
@@ -23,26 +24,38 @@ const ACTION = {
     TOGGLE_PINNED: "togglePinned",
 };
 
-function reducer(prevState, action) {
+function reducer(prevNotes, action) {
     /*action {
         type: ACTION.<keyword>,
-        tag: <tag Name>,
+        tag: <tag Name>, //do something to make this multiple tags at a time it will be array TODO
+        note: <noteObj>
+        id: <note.id>
     }*/
     switch (action.type) {
         case ACTION.ADD_NOTE:
-            break;
+            return [...prevNotes, action.note];
         case ACTION.DELETE_NOTE:
-            break;
+            return prevNotes.filter(note => note.id !== action.id);
         case ACTION.ADD_TAG:
-            break;
+            return prevNotes.map(note => {
+                return note.id !== action.id ? note : {...note, tags: [...note.tags, action.tag]};
+            });
         case ACTION.DELETE_TAG:
-            break;
+            return prevNotes.map(note => {
+                return note.id !== action.id ? note : {...note, tags: note.tags.filter(tag => tag !== action.tags)};
+            })
         case ACTION.TOGGLE_ARCHIVE:
-            break;
+            return prevNotes.map(note => {
+                return note.id !== action.id ? note : {...note, isArchived: !note.isArchived};
+            });
         case ACTION.TOGGLE_TRASH:
-            break;
+            return prevNotes.map(note => {
+                return note.id !== action.id ? note : {...note, isTrashed: !note.isTrashed};
+            });
         case ACTION.TOGGLE_PINNED:
-            break;
+            return prevNotes.map(note => {
+                return note.id !== action.id ? note : {...note, isPinned: !note.isPinned};
+            });
         default:
             return prevState;
     }
