@@ -14,7 +14,7 @@ const NOTES_STR_KEY = "notes.app";
     tags: [<tag Name>],
 } */
 
-const ACTION = {
+export const ACTION = {
     ADD_NOTE: "addNote",
     DELETE_NOTE: "deleteNote",
     ADD_TAG: "addTag",
@@ -35,26 +35,39 @@ function reducer(prevNotes, action) {
         case ACTION.ADD_NOTE:
             return [...prevNotes, action.note];
         case ACTION.DELETE_NOTE:
-            return prevNotes.filter(note => note.id !== action.id);
+            return prevNotes.filter((note) => note.id !== action.id);
         case ACTION.ADD_TAG:
-            return prevNotes.map(note => {
-                return note.id !== action.id ? note : {...note, tags: [...note.tags, action.tag]};
+            return prevNotes.map((note) => {
+                return note.id !== action.id
+                    ? note
+                    : { ...note, tags: [...note.tags, action.tag] };
             });
         case ACTION.DELETE_TAG:
-            return prevNotes.map(note => {
-                return note.id !== action.id ? note : {...note, tags: note.tags.filter(tag => tag !== action.tags)};
-            })
+            return prevNotes.map((note) => {
+                return note.id !== action.id
+                    ? note
+                    : {
+                          ...note,
+                          tags: note.tags.filter((tag) => tag !== action.tags),
+                      };
+            });
         case ACTION.TOGGLE_ARCHIVE:
-            return prevNotes.map(note => {
-                return note.id !== action.id ? note : {...note, isArchived: !note.isArchived};
+            return prevNotes.map((note) => {
+                return note.id !== action.id
+                    ? note
+                    : { ...note, isArchived: !note.isArchived };
             });
         case ACTION.TOGGLE_TRASH:
-            return prevNotes.map(note => {
-                return note.id !== action.id ? note : {...note, isTrashed: !note.isTrashed};
+            return prevNotes.map((note) => {
+                return note.id !== action.id
+                    ? note
+                    : { ...note, isTrashed: !note.isTrashed };
             });
         case ACTION.TOGGLE_PINNED:
-            return prevNotes.map(note => {
-                return note.id !== action.id ? note : {...note, isPinned: !note.isPinned};
+            return prevNotes.map((note) => {
+                return note.id !== action.id
+                    ? note
+                    : { ...note, isPinned: !note.isPinned };
             });
         default:
             return prevNotes;
@@ -67,8 +80,7 @@ function reducer(prevNotes, action) {
 export default function NotesContainer() {
     const [notes, dispatch] = useReducer(
         reducer,
-        (JSON.parse(localStorage.getItem(NOTES_STR_KEY))
-         || [])
+        JSON.parse(localStorage.getItem(NOTES_STR_KEY)) || []
     );
 
     useEffect(() => {
@@ -79,8 +91,8 @@ export default function NotesContainer() {
 
     return (
         <>
-            <Notes notes={notes} dispatch={dispatch} filter={defaultNotes}/> 
-        {/*will include routes with Notes having different filtering functions from utils js*/}
+            <Notes notes={notes} dispatch={dispatch} filter={defaultNotes} />
+            {/*will include routes with Notes having different filtering functions from utils js*/}
             {/*app utils will have the functions will import in Notes and run it on the notes here I am passing as a filter function for testing*/}
         </>
     );
@@ -89,13 +101,17 @@ export default function NotesContainer() {
 //functions of utils.js
 function defaultNotes(notes) {
     //will be ran inside Notes component to filter the notes prop before rendering
-    return notes.filter((note) => {!note.isArchived && !note.isDeleted}).sort((a,b) => {
-        if (a.isPinned && b.isPinned){
-            return 0; //dont sort
-        } else if (a.isPinned) {
-            return -1; //sort before b
-        } else if (b.isPinned) {
-            return 1; //sort after b
-        }
-    });
+    return notes
+        .filter((note) => {
+            !note.isArchived && !note.isDeleted;
+        })
+        .sort((a, b) => {
+            if (a.isPinned && b.isPinned) {
+                return 0; //dont sort
+            } else if (a.isPinned) {
+                return -1; //sort before b
+            } else if (b.isPinned) {
+                return 1; //sort after b
+            }
+        });
 }
