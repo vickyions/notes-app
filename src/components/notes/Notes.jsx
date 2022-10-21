@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import NoteCard from './NoteCard';
 
 /*notes [notesObj]
@@ -15,7 +15,7 @@ import NoteCard from './NoteCard';
 export default function Notes(props) {
     const {notes, dispatch, filter} = props;
     //pass filtered note to notecard
-    const defNotes = filter(notes);
+    const defNotes = useMemo(() => filter(notes), [notes]);
     return (
         <>
             {defNotes.map(note => <NoteCard key={note.id} note={note} dispatch={dispatch}/>)}
