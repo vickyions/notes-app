@@ -49,6 +49,7 @@ function reducer(prevNotes, action) {
         case ACTION.ADD_NOTE:
             return [...prevNotes, {...noteTemplate, content: action.noteContent, id: nanoid()}];
         case ACTION.DELETE_NOTE:
+            //it will be visible in notecard when its in trash for permanent delete
             return prevNotes.filter((note) => note.id !== action.id);
         case ACTION.ADD_TAG:
             return prevNotes.map((note) => {
@@ -57,6 +58,7 @@ function reducer(prevNotes, action) {
                     : { ...note, tags: [...note.tags, action.tag] };
             });
         case ACTION.DELETE_TAG:
+            //implement some dropdown for tag add and delete in notecard
             return prevNotes.map((note) => {
                 return note.id !== action.id
                     ? note
