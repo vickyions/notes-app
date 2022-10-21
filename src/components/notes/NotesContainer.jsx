@@ -85,6 +85,8 @@ function reducer(prevNotes, action) {
                     ? note
                     : { ...note, isPinned: !note.isPinned };
             });
+            //when possible implement that pinned moves to the top as right now its just get filtered to top
+            //but I want latest pinned to be the 0 idx note in array
         default:
             return prevNotes;
     }
