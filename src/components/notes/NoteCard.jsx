@@ -1,6 +1,8 @@
 import React from "react";
 import "./NoteCard.css";
 import { ACTION } from "./NotesContainer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faTrashCan, faBoxArchive, faThumbtack} from "@fortawesome/free-solid-svg-icons";
 
 /*notes [notesObj]
 /*notesObj {
@@ -18,7 +20,22 @@ export default function NoteCard(props) {
 
     return (
         <div className="note-card">
-            <h1>{note.content}</h1>
+            <div className="note-card-main">
+                <h1>{note.content}</h1>
+            </div>
+            
+            {/*TODO for now keeping tags feature on hold whether to add a global tag list 
+            and assign from the list or individulally allow to create tag and then count
+            {note.tags.length > 0 &&<div className="tags-container">
+                <div className="tags-capsules">
+                    {note.tags.map((tag) => {
+                        <div key=className="tag-capsule">{tag}</div>
+                    })}
+                </div>
+            </div>
+            }
+            */}
+
             <p>{JSON.stringify(note)}</p>
             <div className="note-card-actions">
                 <button
@@ -27,7 +44,7 @@ export default function NoteCard(props) {
                         dispatch({ type: ACTION.TOGGLE_ARCHIVE, id: note.id })
                     }
                 >
-                    Archive
+                    <FontAwesomeIcon icon={faBoxArchive}/>
                 </button>
                 <button
                     type="button"
@@ -35,7 +52,7 @@ export default function NoteCard(props) {
                         dispatch({ type: ACTION.TOGGLE_TRASH, id: note.id })
                     }
                 >
-                    Trash
+                <FontAwesomeIcon icon={faTrashCan}/>
                 </button>
                 <button
                     type="button"
@@ -43,7 +60,7 @@ export default function NoteCard(props) {
                         dispatch({ type: ACTION.TOGGLE_PINNED, id: note.id })
                     }
                 >
-                    Pin
+                    <FontAwesomeIcon icon={faThumbtack}/>
                 </button>
             </div>
         </div>
