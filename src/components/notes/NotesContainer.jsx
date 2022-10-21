@@ -1,5 +1,7 @@
 import React, { useEffect, useReducer } from "react";
+import { nanoid } from "nanoid";
 import Notes from "./Notes";
+import InputNote from "./InputNote";
 
 const NOTES_STR_KEY = "notes.app";
 /*notes [notesObj]
@@ -14,13 +16,24 @@ const NOTES_STR_KEY = "notes.app";
     tags: [<tag Name>],
 } */
 
+const noteTemplate = {
+    id: "",
+    content: "",
+    backgroundColor: "white",
+    color: "black",
+    isPinned: false,
+    isArchived: false,
+    isTrashed: false,
+    tags: []
+};
+
 export const ACTION = {
     ADD_NOTE: "addNote",
     DELETE_NOTE: "deleteNote",
     ADD_TAG: "addTag",
     DELETE_TAG: "deleteTag",
     TOGGLE_ARCHIVE: "togglearchive",
-    TOGGLE_TRASH: "tpggleTrash",
+    TOGGLE_TRASH: "toggleTrash",
     TOGGLE_PINNED: "togglePinned",
 };
 
@@ -29,11 +42,12 @@ function reducer(prevNotes, action) {
         type: ACTION.<keyword>,
         tag: <tag Name>, //do something to make this multiple tags at a time it will be array TODO
         note: <noteObj>
+        noteContent: <noteContent> //recieved from the input, while add new note generate nanoid and also assign noteTemplate
         id: <note.id>
     }*/
     switch (action.type) {
         case ACTION.ADD_NOTE:
-            return [...prevNotes, action.note];
+            return [...prevNotes, {...noteTemplate, content: action.noteContent, id: nanoid()}];
         case ACTION.DELETE_NOTE:
             return prevNotes.filter((note) => note.id !== action.id);
         case ACTION.ADD_TAG:
@@ -91,6 +105,7 @@ export default function NotesContainer() {
 
     return (
         <>
+            <InputNote dispatch={dispatch}/>
             <Notes notes={notes} dispatch={dispatch} filter={defaultNotes} />
             {/*will include routes with Notes having different filtering functions from utils js*/}
             {/*app utils will have the functions will import in Notes and run it on the notes here I am passing as a filter function for testing*/}
@@ -103,7 +118,7 @@ function defaultNotes(notes) {
     //will be ran inside Notes component to filter the notes prop before rendering
     return notes
         .filter((note) => {
-            !note.isArchived && !note.isDeleted;
+            return !note.isArchived && !note.isTrashed;
         })
         .sort((a, b) => {
             if (a.isPinned && b.isPinned) {

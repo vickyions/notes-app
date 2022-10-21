@@ -16,10 +16,9 @@ export default function Notes(props) {
     const {notes, dispatch, filter} = props;
     //pass filtered note to notecard
     const defNotes = filter(notes);
-
     return (
         <>
-            {defNotes.map(note => <NoteCard note={note} dispatch={dispatch}/>)}
+            {defNotes.map(note => <NoteCard key={note.id} note={note} dispatch={dispatch}/>)}
         </>
     );
 }
