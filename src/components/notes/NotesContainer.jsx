@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import {BrowserRoutes} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { nanoid } from "nanoid";
 import Notes from "./Notes";
 import InputNote from "./InputNote";
@@ -17,11 +17,16 @@ const NOTES_STR_KEY = "notes.app";
     isTrashed,
     tags: [<tag Name>],
 } */
-    
 
-//TODO replace noteTemplate with this class 
+//TODO replace noteTemplate with this class
 class Note {
-    constructor(content = "", backgroundColor = "white", color = "black", tags = [], isArr = [false, false, false]) {
+    constructor(
+        content = "",
+        backgroundColor = "white",
+        color = "black",
+        tags = [],
+        isArr = [false, false, false]
+    ) {
         this.id = nanoid();
         this.content = content;
 
@@ -30,7 +35,7 @@ class Note {
 
         this.tags = tags;
 
-    //isArr : [pinned, archived, trashed] : bool
+        //isArr : [pinned, archived, trashed] : bool
         this.isPinned = isArr[0];
         this.isArchived = isArr[1];
         this.isTrashed = isArr[2];
@@ -45,7 +50,7 @@ const noteTemplate = {
     isPinned: false,
     isArchived: false,
     isTrashed: false,
-    tags: []
+    tags: [],
 };
 
 export const ACTION = {
@@ -68,7 +73,10 @@ function reducer(prevNotes, action) {
     }*/
     switch (action.type) {
         case ACTION.ADD_NOTE:
-            return [...prevNotes, {...noteTemplate, content: action.noteContent, id: nanoid()}];
+            return [
+                ...prevNotes,
+                { ...noteTemplate, content: action.noteContent, id: nanoid() },
+            ];
         case ACTION.DELETE_NOTE:
             //it will be visible in notecard when its in trash for permanent delete
             return prevNotes.filter((note) => note.id !== action.id);
@@ -106,8 +114,8 @@ function reducer(prevNotes, action) {
                     ? note
                     : { ...note, isPinned: !note.isPinned };
             });
-            //when possible implement that pinned moves to the top as right now its just get filtered to top
-            //but I want latest pinned to be the 0 idx note in array
+        //when possible implement that pinned moves to the top as right now its just get filtered to top
+        //but I want latest pinned to be the 0 idx note in array
         default:
             return prevNotes;
     }
@@ -130,9 +138,41 @@ export default function NotesContainer() {
 
     return (
         <>
-            <InputNote dispatch={dispatch}/>
-            <BrowserRoutes>
-            <Notes notes={notes} dispatch={dispatch} filter={defaultNotes} />
+            <InputNote dispatch={dispatch} />
+            <BrowserRouter>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <Notes
+                                notes={notes}
+                                dispatch={dispatch}
+                                filter={defaultNotes}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/archive"
+                        element={
+                            <Notes
+                                notes={notes}
+                                dispatch={dispatch}
+                                filter={archivedNotes}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/trash"
+                        element={
+                            <Notes
+                                notes={notes}
+                                dispatch={dispatch}
+                                filter={trashedNotes}
+                            />
+                        }
+                    />
+                </Routes>
+            </BrowserRouter>
             {/*will include routes with Notes having different filtering functions from utils js*/}
             {/*app utils will have the functions will import in Notes and run it on the notes here I am passing as a filter function for testing*/}
         </>
@@ -145,6 +185,40 @@ function defaultNotes(notes) {
     return notes
         .filter((note) => {
             return !note.isArchived && !note.isTrashed;
+        })
+        .sort((a, b) => {
+            if (a.isPinned && b.isPinned) {
+                return 0; //dont sort
+            } else if (a.isPinned) {
+                return -1; //sort before b
+            } else if (b.isPinned) {
+                return 1; //sort after b
+            }
+        });
+}
+
+function archivedNotes(notes) {
+    //will be ran inside Notes component to filter the notes prop before rendering
+    return notes
+        .filter((note) => {
+            return note.isArchived;
+        })
+        .sort((a, b) => {
+            if (a.isPinned && b.isPinned) {
+                return 0; //dont sort
+            } else if (a.isPinned) {
+                return -1; //sort before b
+            } else if (b.isPinned) {
+                return 1; //sort after b
+            }
+        });
+}
+
+function trashedNotes(notes) {
+    //will be ran inside Notes component to filter the notes prop before rendering
+    return notes
+        .filter((note) => {
+            return note.isTrashed;
         })
         .sort((a, b) => {
             if (a.isPinned && b.isPinned) {
