@@ -15,7 +15,7 @@ import NoteCard from './NoteCard';
 export default function Notes(props) {
     const {notes, dispatch, filter} = props;
     //pass filtered note to notecard
-    const defNotes = useMemo(() => filter(notes), [notes]);
+    const defNotes = useMemo(() => filter(notes), [notes, filter]);
     return (
         <>
             {defNotes.map(note => <NoteCard key={note.id} note={note} dispatch={dispatch}/>)}

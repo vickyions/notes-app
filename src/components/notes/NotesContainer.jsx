@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { nanoid } from "nanoid";
 import Notes from "./Notes";
 import InputNote from "./InputNote";
+import Sidebar from "./Sidebar";
 
 const NOTES_STR_KEY = "notes.app";
 /*notes [notesObj]
@@ -138,17 +139,20 @@ export default function NotesContainer() {
 
     return (
         <>
-            <InputNote dispatch={dispatch} />
             <BrowserRouter>
+                <Sidebar />
                 <Routes>
                     <Route
                         path="/"
                         element={
-                            <Notes
-                                notes={notes}
-                                dispatch={dispatch}
-                                filter={defaultNotes}
-                            />
+                            <>
+                                <InputNote dispatch={dispatch} />
+                                <Notes
+                                    notes={notes}
+                                    dispatch={dispatch}
+                                    filter={defaultNotes}
+                                />
+                            </>
                         }
                     />
                     <Route
