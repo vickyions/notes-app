@@ -5,6 +5,7 @@ import InputNote from "./InputNote";
 
 const NOTES_STR_KEY = "notes.app";
 /*notes [notesObj]
+ * TODO Define a class for this noteObj in utils.js
 /*notesObj {
  * id: nanoid,
     content,
@@ -15,6 +16,25 @@ const NOTES_STR_KEY = "notes.app";
     isTrashed,
     tags: [<tag Name>],
 } */
+    
+
+//TODO replace noteTemplate with this class 
+class Note {
+    constructor(content = "", backgroundColor = "white", color = "black", tags = [], isArr = [false, false, false]) {
+        this.id = nanoid();
+        this.content = content;
+
+        this.backgroundColor = backgroundColor;
+        this.color = color;
+
+        this.tags = tags;
+
+    //isArr : [pinned, archived, trashed] : bool
+        this.isPinned = isArr[0];
+        this.isArchived = isArr[1];
+        this.isTrashed = isArr[2];
+    }
+}
 
 const noteTemplate = {
     id: "",
