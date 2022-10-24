@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer } from "react";
+import {BrowserRoutes} from "react-router-dom";
 import { nanoid } from "nanoid";
 import Notes from "./Notes";
 import InputNote from "./InputNote";
@@ -130,6 +131,7 @@ export default function NotesContainer() {
     return (
         <>
             <InputNote dispatch={dispatch}/>
+            <BrowserRoutes>
             <Notes notes={notes} dispatch={dispatch} filter={defaultNotes} />
             {/*will include routes with Notes having different filtering functions from utils js*/}
             {/*app utils will have the functions will import in Notes and run it on the notes here I am passing as a filter function for testing*/}
