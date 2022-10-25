@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRef } from "react";
-import { ACTION } from "./NotesContainer";
+import { ACTION } from "./utils/noteHook";
 
 /*notes [notesObj]
 /*notesObj {

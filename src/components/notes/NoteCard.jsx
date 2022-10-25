@@ -1,6 +1,6 @@
 import React from "react";
 import "./NoteCard.css";
-import { ACTION } from "./NotesContainer";
+import { ACTION } from "./utils/noteHook"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faTrashCan, faBoxArchive, faThumbtack} from "@fortawesome/free-solid-svg-icons";
 
