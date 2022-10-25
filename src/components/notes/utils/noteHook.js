@@ -85,7 +85,7 @@ function reducer(prevNotes, action) {
                 return note.id !== action.id
                     ? note
                     : note.isTrashed
-                    ? note
+                    ? { ...note, isTrashed: !note.isTrashed, isArchived: !note.isArchived}
                     : { ...note, isArchived: !note.isArchived };
             });
         case ACTION.TOGGLE_TRASH:
@@ -93,7 +93,7 @@ function reducer(prevNotes, action) {
                 return note.id !== action.id
                     ? note
                     : note.isArchived
-                    ? note
+                    ? { ...note, isArchived: !note.isArchived, isTrashed: !note.isTrashed}
                     : { ...note, isTrashed: !note.isTrashed };
             });
         case ACTION.TOGGLE_PINNED:
