@@ -1,4 +1,4 @@
-import {useEffect, useReducer} from "react";
+import { useEffect, useReducer } from "react";
 import { nanoid } from "nanoid";
 
 const NOTES_STR_KEY = "notes.app";
@@ -59,7 +59,7 @@ function reducer(prevNotes, action) {
         case ACTION.ADD_NOTE:
             return [
                 ...prevNotes,
-                { ...(new NoteCls()), content: action.noteContent },
+                { ...new NoteCls(), content: action.noteContent },
             ];
         case ACTION.DELETE_NOTE:
             //it will be visible in notecard when its in trash for permanent delete
@@ -84,11 +84,15 @@ function reducer(prevNotes, action) {
             return prevNotes.map((note) => {
                 return note.id !== action.id
                     ? note
+                    : note.isTrashed
+                    ? note
                     : { ...note, isArchived: !note.isArchived };
             });
         case ACTION.TOGGLE_TRASH:
             return prevNotes.map((note) => {
                 return note.id !== action.id
+                    ? note
+                    : note.isArchived
                     ? note
                     : { ...note, isTrashed: !note.isTrashed };
             });
@@ -118,4 +122,4 @@ export default function useNotes() {
     return [notes, dispatch];
 }
 
-export {ACTION, NoteCls};
+export { ACTION, NoteCls };
