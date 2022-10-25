@@ -1,14 +1,18 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import Navbar from './components/navbar/Navbar';
-import NotesContainer from './components/notes/NotesContainer'
+import Navbar from "./components/navbar/Navbar";
+import NotesContainer from "./components/notes/NotesContainer";
+import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {
     return (
         <div className="App">
             <Navbar />
-            <h1>Hello World!</h1>
-            <NotesContainer />
+            <BrowserRouter>
+                <Sidebar />
+                <NotesContainer />
+            </BrowserRouter>
         </div>
     );
 }

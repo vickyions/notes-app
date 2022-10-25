@@ -1,9 +1,8 @@
 import React, { useEffect, useReducer } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { nanoid } from "nanoid";
 import Notes from "./Notes";
 import InputNote from "./InputNote";
-import Sidebar from "./Sidebar";
 
 const NOTES_STR_KEY = "notes.app";
 /*notes [notesObj]
@@ -139,44 +138,41 @@ export default function NotesContainer() {
 
     return (
         <>
-            <BrowserRouter>
-                <Sidebar />
-                <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <>
-                                <InputNote dispatch={dispatch} />
-                                <Notes
-                                    notes={notes}
-                                    dispatch={dispatch}
-                                    filter={defaultNotes}
-                                />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/archive"
-                        element={
+            <Routes>
+                <Route
+                    path="/"
+                    element={
+                        <>
+                            <InputNote dispatch={dispatch} />
                             <Notes
                                 notes={notes}
                                 dispatch={dispatch}
-                                filter={archivedNotes}
+                                filter={defaultNotes}
                             />
-                        }
-                    />
-                    <Route
-                        path="/trash"
-                        element={
-                            <Notes
-                                notes={notes}
-                                dispatch={dispatch}
-                                filter={trashedNotes}
-                            />
-                        }
-                    />
-                </Routes>
-            </BrowserRouter>
+                        </>
+                    }
+                />
+                <Route
+                    path="/archive"
+                    element={
+                        <Notes
+                            notes={notes}
+                            dispatch={dispatch}
+                            filter={archivedNotes}
+                        />
+                    }
+                />
+                <Route
+                    path="/trash"
+                    element={
+                        <Notes
+                            notes={notes}
+                            dispatch={dispatch}
+                            filter={trashedNotes}
+                        />
+                    }
+                />
+            </Routes>
             {/*will include routes with Notes having different filtering functions from utils js*/}
             {/*app utils will have the functions will import in Notes and run it on the notes here I am passing as a filter function for testing*/}
         </>
