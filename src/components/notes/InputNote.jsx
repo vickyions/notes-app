@@ -22,8 +22,7 @@ export default function InputNote(props) {
 
     return (
         <div className="input-note-container">
-            <input
-                type="text"
+            <textarea
                 placeholder="Input note"
                 value={noteContent}
                 onChange={(event) => setNoteContent(event.target.value)}
