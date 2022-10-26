@@ -25,10 +25,12 @@ export default function NoteCard(props) {
 
     return (
         <div className="note-card">
-            <MarkdownView
-                markdown={note.content}
-                options={{ tables: true, emoji: true }}
-            />
+            <div className="note-card-content">
+                <MarkdownView
+                    markdown={note.content}
+                    options={{ tables: true, emoji: true }}
+                />
+            </div>
 
             {/*TODO for now keeping tags feature on hold whether to add a global tag list 
             and assign from the list or individulally allow to create tag and then count

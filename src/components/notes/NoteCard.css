@@ -1,5 +1,17 @@
 .note-card {
+    font-size: 0.9em;
     border: 1px solid violet;
     border-radius: 5px;
     margin: 5px;
+    padding: 5px;
+    width: fit-content;
+    float: left;
+}
+
+.note-card blockquote {
+    background-color: #ccc;
+}
+
+.note-card pre {
+    background-color: #eee;
 }
