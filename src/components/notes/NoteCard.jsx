@@ -1,8 +1,13 @@
 import React from "react";
+import MarkdownView from "react-showdown";
 import "./NoteCard.css";
-import { ACTION } from "./utils/noteHook"
+import { ACTION } from "./utils/noteHook";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faTrashCan, faBoxArchive, faThumbtack} from "@fortawesome/free-solid-svg-icons";
+import {
+    faTrashCan,
+    faBoxArchive,
+    faThumbtack,
+} from "@fortawesome/free-solid-svg-icons";
 
 /*notes [notesObj]
 /*notesObj {
@@ -20,10 +25,11 @@ export default function NoteCard(props) {
 
     return (
         <div className="note-card">
-            <div className="note-card-main">
-                <h1>{note.content}</h1>
-            </div>
-            
+            <MarkdownView
+                markdown={note.content}
+                options={{ tables: true, emoji: true }}
+            />
+
             {/*TODO for now keeping tags feature on hold whether to add a global tag list 
             and assign from the list or individulally allow to create tag and then count
             {note.tags.length > 0 &&<div className="tags-container">
@@ -36,7 +42,6 @@ export default function NoteCard(props) {
             }
             */}
 
-            <p>{JSON.stringify(note)}</p>
             <div className="note-card-actions">
                 <button
                     type="button"
@@ -44,7 +49,7 @@ export default function NoteCard(props) {
                         dispatch({ type: ACTION.TOGGLE_ARCHIVE, id: note.id })
                     }
                 >
-                    <FontAwesomeIcon icon={faBoxArchive}/>
+                    <FontAwesomeIcon icon={faBoxArchive} />
                 </button>
                 <button
                     type="button"
@@ -52,7 +57,7 @@ export default function NoteCard(props) {
                         dispatch({ type: ACTION.TOGGLE_TRASH, id: note.id })
                     }
                 >
-                <FontAwesomeIcon icon={faTrashCan}/>
+                    <FontAwesomeIcon icon={faTrashCan} />
                 </button>
                 <button
                     type="button"
@@ -60,7 +65,7 @@ export default function NoteCard(props) {
                         dispatch({ type: ACTION.TOGGLE_PINNED, id: note.id })
                     }
                 >
-                    <FontAwesomeIcon icon={faThumbtack}/>
+                    <FontAwesomeIcon icon={faThumbtack} />
                 </button>
             </div>
         </div>
