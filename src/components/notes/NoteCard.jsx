@@ -55,9 +55,17 @@ export default function NoteCard(props) {
                 </button>
                 <button
                     type="button"
-                    onClick={() =>
-                        dispatch({ type: ACTION.TOGGLE_TRASH, id: note.id })
-                    }
+                    onClick={(event) => {
+                        if (event.ctrlKey) {
+                            //delete only when in trash already and on Ctrl + click on trash icon
+                            dispatch({ type: ACTION.DELETE_NOTE, id: note.id });
+                        } else {
+                            dispatch({
+                                type: ACTION.TOGGLE_TRASH,
+                                id: note.id,
+                            });
+                        }
+                    }}
                 >
                     <FontAwesomeIcon icon={faTrashCan} />
                 </button>

@@ -62,8 +62,14 @@ function reducer(prevNotes, action) {
                 { ...new NoteCls(), content: action.noteContent },
             ];
         case ACTION.DELETE_NOTE:
-            //it will be visible in notecard when its in trash for permanent delete
-            return prevNotes.filter((note) => note.id !== action.id);
+            //will delete when in trash and Ctrl + click on trash icon
+            return prevNotes.filter((note) => {
+                if (note.isTrashed) {
+                    return note.id !== action.id;
+                } else {
+                    return true;
+                }
+            });
         case ACTION.ADD_TAG:
             return prevNotes.map((note) => {
                 return note.id !== action.id
@@ -85,7 +91,11 @@ function reducer(prevNotes, action) {
                 return note.id !== action.id
                     ? note
                     : note.isTrashed
-                    ? { ...note, isTrashed: !note.isTrashed, isArchived: !note.isArchived}
+                    ? {
+                          ...note,
+                          isTrashed: !note.isTrashed,
+                          isArchived: !note.isArchived,
+                      }
                     : { ...note, isArchived: !note.isArchived };
             });
         case ACTION.TOGGLE_TRASH:
@@ -93,7 +103,11 @@ function reducer(prevNotes, action) {
                 return note.id !== action.id
                     ? note
                     : note.isArchived
-                    ? { ...note, isArchived: !note.isArchived, isTrashed: !note.isTrashed}
+                    ? {
+                          ...note,
+                          isArchived: !note.isArchived,
+                          isTrashed: !note.isTrashed,
+                      }
                     : { ...note, isTrashed: !note.isTrashed };
             });
         case ACTION.TOGGLE_PINNED:
