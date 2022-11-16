@@ -1,1 +1,1 @@
-web: vite preview --port 8080
+web: npx vite preview --port 8080
