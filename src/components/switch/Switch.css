@@ -20,6 +20,7 @@
     justify-content: center;
     gap: calc(var(--size) * 0.3);
     flex: 0 0 0; /*if inside a flex body*/
+    user-select: none;
 }
 
 .switch-left, .switch-right {

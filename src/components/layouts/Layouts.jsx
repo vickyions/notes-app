@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGrip, faGripLines } from "@fortawesome/free-solid-svg-icons";
+import "./Layouts.css";
 
 export default function Layouts() {
     
