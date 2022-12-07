@@ -16,12 +16,13 @@ import {
     color,
     isPinned,
     isArchived,
-    isDeleted,
+    isTrashed,
     ftags: [<tag Name>],
 } */
 
 export default function NoteCard(props) {
     const { note, dispatch } = props;
+    console.log(note);
 
     return (
         <div className="note-card">
@@ -47,6 +48,7 @@ export default function NoteCard(props) {
             <div className="note-card-actions">
                 <button
                     type="button"
+                    className={note.isArchived ? "archived-btn" : "btn"}
                     onClick={() =>
                         dispatch({ type: ACTION.TOGGLE_ARCHIVE, id: note.id })
                     }
@@ -55,6 +57,7 @@ export default function NoteCard(props) {
                 </button>
                 <button
                     type="button"
+                    className={note.isTrashed ? "trashed-btn" : "btn"}
                     onClick={(event) => {
                         if (event.ctrlKey) {
                             //delete only when in trash already and on Ctrl + click on trash icon
@@ -71,6 +74,7 @@ export default function NoteCard(props) {
                 </button>
                 <button
                     type="button"
+                    className={note.isPinned ? "pinned-btn" : "btn"}
                     onClick={() =>
                         dispatch({ type: ACTION.TOGGLE_PINNED, id: note.id })
                     }

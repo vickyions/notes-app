@@ -1,17 +1,49 @@
 .note-card {
     font-size: 0.9em;
-    border: 1px solid violet;
-    border-radius: 5px;
+    box-shadow: 2px 2px 1px 2px grey;
+    border-radius: 3px;
     margin: 5px;
-    padding: 5px;
+    padding: 10px;
     width: fit-content;
     float: left;
 }
 
-.note-card blockquote {
-    background-color: #ccc;
+.note-card h1:first-child {
+    margin-top: 0;
 }
 
 .note-card pre {
-    background-color: #eee;
+    border: 1.5px solid #eee;
+    padding: 5px;
+}
+
+/*.note-card blockquote {*/
+    /*background-color: red;*/
+/*}*/
+
+.note-card-actions {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: end;
+    gap: 5px;
+}
+
+.note-card-actions button {
+    width: 30px;
+    padding: 2px;
+    border: 1px solid grey;
+    background-color: white;
+    color: grey;
+    cursor: pointer;
+}
+
+.note-card-actions button:hover {
+    color: white;
+    background-color: grey;
+}
+
+.note-card-actions .pinned-btn, .note-card-actions .archived-btn, .note-card-actions .trashed-btn {
+    color: white;
+    background-color: grey;
 }

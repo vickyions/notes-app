@@ -2,17 +2,16 @@
     /*defining variables can be passed why inline style for switch*/
     --size: 1em;
 
-    --colorOn: green;
+    --colorOn: #68B984;
     --colorOff: white;
     --colorCircleOn: white;
-    --colorCircleOff: green;
+    --colorCircleOff: grey;
     --textActiveColor: black;
     --textActiveWt: 600;
     --textDefaultColor: #777;
 }
 
 .switch-container {
-    border: 1px solid red;
     width: fit-content;
     display: flex;
     flex-flow: row nowrap;
@@ -33,9 +32,10 @@
     width: var(--width);
     height: var(--height);
     border-radius: calc(var(--height) / 2);
-    border: 1px solid green;
+    border: 1px solid var(--colorCircleOff);
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
 }
 
 .switch-on {
@@ -53,7 +53,7 @@
     border-radius: 50%;
     width: calc(var(--width) * 0.5 - 2 * var(--margin));
     height: calc(var(--height) - 2 * var(--margin));
-    margin: var(--margin);
+    margin: var(--margin)  var(--margin)/2;
     background-color: var(--colorCircleOff);
 }
 

@@ -1,0 +1,18 @@
+.sidebar {
+    width: 100%;
+}
+
+.sidebar ul {
+    display: flex;
+    flex-flow: column nowrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin: 30px 10px;
+    gap: 20px;
+    font-size: 1.2em;
+}
+
+.sidebar a {
+    text-decoration: none;
+}
