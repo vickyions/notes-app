@@ -1,0 +1,13 @@
+.notes-card-container {
+    /*display: flex;*/
+    /*flex-flow: row wrap;*/
+    /*justify-content: flex-start;*/
+    /*align-items: flex-start;*/
+    /*align-content: flex-start;*/
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+    grid-template-rows: repeat(5, auto);
+    justify-content: start;
+    width: 100%;
+}
+

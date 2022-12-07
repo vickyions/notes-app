@@ -1,5 +1,6 @@
-import React, {useMemo} from 'react';
+import React, { useMemo } from 'react';
 import NoteCard from './NoteCard';
+import './Notes.css';
 
 /*notes [notesObj]
 /*notesObj {
@@ -13,12 +14,16 @@ import NoteCard from './NoteCard';
 } */
 
 export default function Notes(props) {
-    const {notes, dispatch, filter} = props;
+    const { notes, dispatch, filter } = props;
     //pass filtered note to notecard
     const defNotes = useMemo(() => filter(notes), [notes, filter]);
     return (
         <>
-            {defNotes.map(note => <NoteCard key={note.id} note={note} dispatch={dispatch}/>)}
+            <div className="notes-card-container">
+                {defNotes.map((note) => (
+                    <NoteCard key={note.id} note={note} dispatch={dispatch} />
+                ))}
+            </div>
         </>
     );
 }
