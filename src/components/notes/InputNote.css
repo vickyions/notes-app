@@ -1,0 +1,33 @@
+.input-note-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 700px;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.input-note-container textarea {
+    border-radius: 0;
+    border: none;
+    box-shadow: 0 0 3px 1px grey;
+    padding: 10px;
+    margin-right: 20px;
+    min-height: 40px;
+    min-width: 200px;
+    width: 300px;
+}
+
+.input-note-container button {
+    border: 1px solid grey;
+    padding: 5px;
+    background-color: white;
+    color: grey;
+}
+
+.input-note-container button:hover, .input-note-container button:focus {
+    background-color: grey;
+    color: white;
+}
+

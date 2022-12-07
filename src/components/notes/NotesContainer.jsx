@@ -4,6 +4,7 @@ import Notes from "./Notes";
 import InputNote from "./InputNote";
 import useNotes from "./utils/noteHook";
 import { defaultNotes, archivedNotes, trashedNotes } from "./utils/filters";
+import "./NotesContainer.css";
 
 export default function NotesContainer() {
     const [notes, dispatch] = useNotes();
